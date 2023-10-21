@@ -1,0 +1,30 @@
+﻿@page
+@model AppliedProgrammingTask1.Pages.View_DisasterModel
+@{
+}
+<h4>@Model.hasData</h4>
+<table class="customers">
+    <tr>
+        <th>Row-Number</th>
+        <th>Start Date Of Disaster</th>
+        <th>End Date Of Disaster</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Aid</th>
+        <th>New Aid Captured</th>
+    </tr>
+    <tbody>
+        @foreach (var list in Model.getClass)
+        {
+            <tr>
+                <td>@list.getRow()</td>
+                <td>@list.getStartDate()</td>
+                <td>@list.getEndDate()</td>
+                <td>@list.getLocation()</td>
+                <td>@list.getDescription()</td>
+                <td>@list.getAid()</td>
+                <td>@list.getNewAid()</td>
+            </tr>
+        }
+    </tbody>
+</table>
