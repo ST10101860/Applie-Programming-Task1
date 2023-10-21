@@ -71,7 +71,7 @@ namespace AppliedProgrammingTask1.Pages
                 sqlConnect.Close();
 
 
-
+                //available amount after deduction
                 average = available-(money+buy);
                 TempData["available"] = average;
             }
