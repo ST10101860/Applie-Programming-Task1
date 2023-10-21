@@ -6,12 +6,13 @@ namespace AppliedProgrammingTask1.Pages
 {
     public class Home_PageModel : PageModel
     {
+        public double available, buy, average, goods, money = 0.0;
         public List<Disaster> getClass = new List<Disaster>();
         public string hasData;
         public static SqlConnection sqlConnect;
         public static SqlCommand sqlCommand;
-        SqlDataReader sqlData;
-        public static string query = "";
+        SqlDataReader sqlReader;
+        public static string statement = "";
         public void OnGet()
         {
 
@@ -21,19 +22,62 @@ namespace AppliedProgrammingTask1.Pages
                 sqlConnect = new SqlConnection(conn.getConnection);
 
                 sqlConnect.Open();
-                query = "select* from DISASTER";
-                sqlCommand = new SqlCommand(query, sqlConnect);
-                sqlData = sqlCommand.ExecuteReader();
+                statement = "select* from DISASTER";
+                sqlCommand = new SqlCommand(statement, sqlConnect);
+                sqlReader = sqlCommand.ExecuteReader();
 
-                while (sqlData.Read())
+                while (sqlReader.Read())
                 {
-                    getClass.Add(new Disaster(Convert.ToInt32(sqlData["DISASTER_ID"].ToString()), sqlData["STARTING_DATE"].ToString(), sqlData["ENDING_DATE"].ToString(), sqlData["LOCATION"].ToString(), sqlData["DISASTER_DESCRIPTION"].ToString(), sqlData["AID"].ToString(), sqlData["NEW_AID"].ToString()));
+                    getClass.Add(new Disaster(Convert.ToInt32(sqlReader["DISASTER_ID"].ToString()), sqlReader["STARTING_DATE"].ToString(), sqlReader["ENDING_DATE"].ToString(), sqlReader["LOCATION"].ToString(), sqlReader["DISASTER_DESCRIPTION"].ToString(), sqlReader["AID"].ToString(), sqlReader["NEW_AID"].ToString()));
                 }
                 sqlConnect.Close();
+
+                sqlConnect = new SqlConnection(conn.getConnection);
+                sqlConnect.Open();
+
+                statement = "select sum(AMOUNT) as available from MONEY_";
+                sqlCommand = new SqlCommand(statement, sqlConnect);
+                sqlReader = sqlCommand.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    available = Convert.ToDouble(sqlReader["available"].ToString());
+                }
+
+                sqlConnect.Close();
+
+                sqlConnect = new SqlConnection(conn.getConnection);
+                sqlConnect.Open();
+
+                statement = "select sum(amount) as available from Buy";
+                sqlCommand = new SqlCommand(statement, sqlConnect);
+                sqlReader = sqlCommand.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    buy = Convert.ToDouble(sqlReader["available"].ToString());
+                }
+                sqlConnect.Close();
+
+                sqlConnect = new SqlConnection(conn.getConnection);
+                sqlConnect.Open();
+
+                statement = "select sum(moneys) as available from assign_money";
+                sqlCommand = new SqlCommand(statement, sqlConnect);
+                sqlReader = sqlCommand.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    money = Convert.ToDouble(sqlReader["available"].ToString());
+                }
+
+                sqlConnect.Close();
+
+
+
+                average = available-(money+buy);
+                TempData["available"] = average;
             }
-            catch (Exception ex)
+            catch
             {
-                System.Console.WriteLine(ex.ToString());
+                TempData["DisasterControll"] = "Kindly sign in first to use this feature.";
             }
         }
     }
