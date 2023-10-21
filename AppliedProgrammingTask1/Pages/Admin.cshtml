@@ -2,3 +2,29 @@
 @model AppliedProgrammingTask1.Pages.AdminModel
 @{
 }
+
+<style>
+    .container
+    {
+        width: 60%;
+    }
+</style>
+<div class="Login">
+
+    <h1>Admin Panel</h1>
+
+    <div class="container">
+        <form method="post">
+
+            <label for="email">Username</label>
+            <input type="email" id="txtEmail" name="txtEmail" placeholder="username" required />
+
+            <label for="txtPassword">Password</label>
+            <input type="password" id="txtPassword" name="txtPassword" required />
+
+            <input type="submit" name="btnCapture" value="Login">
+        </form>
+        <br />
+    </div>
+
+</div>
