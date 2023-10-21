@@ -2,7 +2,7 @@
 {
     public class Disaster
     {
-        public string rowID;
+        public int rowID;
         public string startDate;
         public string endDate;
         public string location;
@@ -14,7 +14,7 @@
         {
 
         }
-        public Disaster(string row, string start, string end, string location, string description, string aid, string newAid)
+        public Disaster(int row, string start, string end, string location, string description, string aid, string newAid)
         {
             this.rowID = row;
             this.startDate = start;
@@ -25,7 +25,7 @@
             this.newAid = newAid;
         }
 
-        public string getRow()
+        public int getRow()
         {
             return rowID;
         }

@@ -30,9 +30,9 @@ namespace AppliedProgrammingTask1.Pages
                TempData["assignItem"] = "Item of " + onPost.goodsSelection + " is assigned to active disaster.";
                sqlConnect.Close();
             }
-            catch
+            catch(Exception ex)
             {
-                TempData["assignItem"] = "Kindly sign in first to use this feature.";
+                TempData["assignItem"] = ex.ToString();
             }
 
         }

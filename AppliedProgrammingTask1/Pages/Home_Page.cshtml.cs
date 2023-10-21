@@ -27,7 +27,7 @@ namespace AppliedProgrammingTask1.Pages
 
                 while (sqlData.Read())
                 {
-                    getClass.Add(new Disaster(sqlData["DISASTER_ID"].ToString(), sqlData["STARTING_DATE"].ToString(), sqlData["ENDING_DATE"].ToString(), sqlData["LOCATION"].ToString(), sqlData["DISASTER_DESCRIPTION"].ToString(), sqlData["AID"].ToString(), sqlData["NEW_AID"].ToString()));
+                    getClass.Add(new Disaster(Convert.ToInt32(sqlData["DISASTER_ID"].ToString()), sqlData["STARTING_DATE"].ToString(), sqlData["ENDING_DATE"].ToString(), sqlData["LOCATION"].ToString(), sqlData["DISASTER_DESCRIPTION"].ToString(), sqlData["AID"].ToString(), sqlData["NEW_AID"].ToString()));
                 }
                 sqlConnect.Close();
             }
