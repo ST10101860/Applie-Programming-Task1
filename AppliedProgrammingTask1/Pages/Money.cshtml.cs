@@ -19,6 +19,7 @@ namespace AppliedProgrammingTask1.Pages
 
             try
             {
+                //assigning money to the disaster
                 Connection connection = new Connection();
                sqlConnect = new SqlConnection(connection.getConnection);
                sqlConnect.Open();
