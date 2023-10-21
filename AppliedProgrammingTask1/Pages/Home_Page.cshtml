@@ -1,0 +1,83 @@
+﻿@page
+@model AppliedProgrammingTask1.Pages.Home_PageModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Page</title>
+
+    <style>
+        .main-heading {
+            margin-left: 50px;
+        }
+
+        .wrapper {
+            width: 95%;
+            margin-left: 50px;
+            height: auto;
+            border-style: groove;
+        }
+
+            .wrapper .inner {
+                width: 70%;
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+
+        .row {
+            margin-left: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    <hr>
+    <h1 class="main-heading">Data Manupulation</h1>
+    <hr />
+    <h5 class="main-heading">
+        Available Balance: @if (TempData["available"] != null)
+        {
+            @TempData["available"]
+        }
+    </h5>
+    <hr>
+    <div class="row">
+        <a href="/ItemsPlay" class="btn btn-primary">All assigned items.</a>&emsp;&emsp; <a href="/AssignedTotal" class="btn btn-primary">All assigned money.</a>&emsp;&emsp;<a href="/Buy" class="btn btn-primary">Buy Good</a>
+    </div>
+    <br>
+    <br />
+    <table class="customers">
+        <tr>
+            <th>Row-Number</th>
+            <th>Start Date Of Disaster</th>
+            <th>End Date Of Disaster</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Aid</th>
+            <th>New Aid Captured</th>
+            <th> Action</th>
+        </tr>
+        <tbody>
+            @foreach (var list in Model.getClass)
+            {
+                <tr>
+                    <td>@list.getRow()</td>
+                    <td>@list.getStartDate()</td>
+                    <td>@list.getEndDate()</td>
+                    <td>@list.getLocation()</td>
+                    <td>@list.getDescription()</td>
+                    <td>@list.getAid()</td>
+                    <td>@list.getNewAid()</td>
+                    <td>
+                        <a href="/Item?itemId=@list.getRow()">Assign Item</a>
+                        <br>
+                        <a href="/Money?moneyId=@list.getRow()">Assign Money</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
