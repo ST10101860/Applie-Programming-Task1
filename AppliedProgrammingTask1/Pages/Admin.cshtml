@@ -12,7 +12,17 @@
 <div class="Login">
 
     <h1>Admin Panel</h1>
+    @if (Model.hasData)
+    {
+        @if (TempData["admin_login"] != null)
+        {
+            <script>
+                alert('@TempData["admin_login"]');
+                document.location.href = '/Home_Page';
+            </script>
+        }
 
+    }
     <div class="container">
         <form method="post">
 
