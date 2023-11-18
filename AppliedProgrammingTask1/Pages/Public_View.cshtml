@@ -1,0 +1,128 @@
+﻿@page
+@model AppliedProgrammingTask1.Pages.Public_ViewModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Page</title>
+
+    <style>
+        .main-heading {
+            margin-left: 50px;
+        }
+
+        .wrapper {
+            width: 95%;
+            margin-left: 50px;
+            height: auto;
+            border-style: groove;
+        }
+
+            .wrapper .inner {
+                width: 70%;
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+
+        .row {
+            margin-left: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    <hr>
+    <h1 class="main-heading">Public Data</h1>
+    <hr />
+    <table class="table">
+        <caption>Donation Total</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Total monetary donations received</th>
+                <th scope="col">Total number of goods received</th>
+                <th scope="col">Total Active Disaster</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td>
+                    Total: @if (TempData["goodsPurchase"] != null)
+                    {
+                        @TempData["goodsPurchase"]
+                    }
+                </td>
+                <td>
+                    Total: @if (TempData["goodsCount"] != null)
+                    {
+                        @TempData["goodsCount"]
+                    }
+                </td>
+                <td>
+                    Total: @if (TempData["disasterCount"] != null)
+                    {
+                        @TempData["disasterCount"]
+                    }
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+    <table class="table">
+        <caption>Donation Total</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">Aid Needed</th>
+                <th scope="col">Amount allocated</th>
+                <th scope="col">Goods Allocated</th>
+                <th scope="col">Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+     
+            @foreach (var list in Model.getPublic)
+            {
+                <tr>
+                    <th scope="row">#</th>
+                    <td>
+                        @list.startDate
+                    </td>
+                    <td>
+                        @list.endDate
+                    </td>
+                    <td>
+                        @list.description
+                    </td>
+                    <td>
+                        @list.location
+                    </td>
+                     <td>
+                        @list.aid
+                    </td>
+                    <td>
+                        @list.money
+                    </td>
+                    <td>
+                        @list.item
+                    </td>
+                    <td>
+                       Active
+                    </td>
+                </tr>
+          
+            }
+        </tbody>
+    </table>
+
+
+</body>
+</html>
